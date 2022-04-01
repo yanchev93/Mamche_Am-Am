@@ -27,7 +27,7 @@
 
         public virtual ApplicationUser CreatedByUser { get; set; }
 
-        public ICollection<RecipeIngredient> Ingredients { get; set; }
+        public virtual ICollection<RecipeIngredient> Ingredients { get; set; }
 
         public int CategoryId { get; set; }
 

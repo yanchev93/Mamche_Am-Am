@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\MamcheAmAm.Data.Common\MamcheAmAm.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\MamcheAmAm.Data.Models\MamcheAmAm.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Web\MamcheAmAm.Web.ViewModels\MamcheAmAm.Web.ViewModels.csproj" />
     <ProjectReference Include="..\MamcheAmAm.Services.Mapping\MamcheAmAm.Services.Mapping.csproj" />
   </ItemGroup>
 

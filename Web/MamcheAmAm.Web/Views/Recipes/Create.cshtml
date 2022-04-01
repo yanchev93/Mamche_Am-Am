@@ -1,0 +1,89 @@
+﻿@model MamcheAmAm.Web.ViewModels.RecipesViewModels.CreateRecipeInputModel
+@{
+    this.ViewData["Title"] = "Create new recipe";
+}
+
+<h1 class="text-center">@this.ViewData["Title"]</h1>
+<br />
+<h4 class="text-center">Please fill as much information as you can</h4>
+<form method="post" class="col-md-8 offset-md-2">
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Instructions"></label>
+        <textarea asp-for="Instructions" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="Instructions" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CategoryId"></label>
+        <select asp-for="CategoryId" class="form-control" asp-items="@this.ViewBag.Category">
+            <option value="">Please select your category</option>
+        </select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PreparationTime"></label>
+        <input asp-for="PreparationTime" class="form-control" />
+        <span asp-validation-for="PreparationTime" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CookingTime"></label>
+        <input asp-for="CookingTime" class="form-control" />
+        <span asp-validation-for="CookingTime" class="text-danger"></span>
+    </div>
+    <!-- TODO: make better ingredients UI -->
+    <div id="Ingredients">
+        <a class="btn btn-primary" id="moreIngredients" onclick="moreIngredients()">Add Ingredinets</a>
+    </div>
+    <br />
+    <div id="AttachIngredients"></div>
+    <br />
+    <br />
+    <input type="submit" class="btn btn-primary" />
+</form>
+@section Scripts{
+<script>
+    let ingredientsIndex = 0;
+    let count = 1;
+
+    function moreIngredients(){
+        const AttachIngredients = document.getElementById('AttachIngredients');
+
+        let formDiv = document.createElement('div');
+        formDiv.setAttribute('class', 'form-row');
+        let br = document.createElement('BR');
+
+        let ingredientDiv = document.createElement('div');
+        ingredientDiv.setAttribute('class', 'col');
+
+        let ingredient = document.createElement('input')
+        ingredient.setAttribute('class', 'form-control');
+        ingredient.setAttribute('type', 'text');
+        ingredient.setAttribute('name', `Ingredients[${ingredientsIndex}].Name`);
+        ingredient.setAttribute('placeholder', `${count}. Ingredient name`);
+        
+        ingredientDiv.appendChild(ingredient);
+        
+        let quantityDiv = document.createElement('div');
+        quantityDiv.setAttribute('class', 'col');
+
+        let quantity = document.createElement('input');
+        quantity.setAttribute('class', 'form-control');
+        quantity.setAttribute('type', 'text');
+        quantity.setAttribute('name', `Ingredients[${ingredientsIndex}].Quantity`);
+        quantity.setAttribute('placeholder', `${count}. Ingredient Quantity`);
+        
+        quantityDiv.appendChild(quantity);
+        
+        formDiv.appendChild(ingredientDiv);
+        formDiv.appendChild(quantityDiv);
+
+        AttachIngredients.appendChild(formDiv)
+        ingredientsIndex += 1;
+        count += 1;
+    }
+</script>
+}
