@@ -32,7 +32,7 @@
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "There should be atleast 1 ingredient.")]
         public ICollection<RecipeIngredientInputModel> Ingredients { get; set; }
     }
 }

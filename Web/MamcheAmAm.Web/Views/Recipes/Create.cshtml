@@ -7,6 +7,8 @@
 <br />
 <h4 class="text-center">Please fill as much information as you can</h4>
 <form method="post" class="col-md-8 offset-md-2">
+    <div asp-validation-summary="All" class="text-danger">
+    </div>
     <div class="form-group">
         <label asp-for="Title"></label>
         <input asp-for="Title" class="form-control" />
@@ -17,13 +19,13 @@
         <textarea asp-for="Instructions" class="form-control" rows="4"></textarea>
         <span asp-validation-for="Instructions" class="text-danger"></span>
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
         <label asp-for="CategoryId"></label>
         <select asp-for="CategoryId" class="form-control" asp-items="@this.ViewBag.Category">
             <option value="">Please select your category</option>
         </select>
         <span asp-validation-for="CategoryId" class="text-danger"></span>
-    </div>
+    </div> -->
     <div class="form-group">
         <label asp-for="PreparationTime"></label>
         <input asp-for="PreparationTime" class="form-control" />
@@ -34,12 +36,23 @@
         <input asp-for="CookingTime" class="form-control" />
         <span asp-validation-for="CookingTime" class="text-danger"></span>
     </div>
+    <div class="form-group">
+        <label asp-for="Portions"></label>
+        <input asp-for="Portions" class="form-control" />
+        <span asp-validation-for="Portions" class="text-danger"></span>
+    </div>
     <!-- TODO: make better ingredients UI -->
     <div id="Ingredients">
-        <a class="btn btn-primary" id="moreIngredients" onclick="moreIngredients()">Add Ingredinets</a>
+        <label asp-for="Ingredients"></label>
+        <div class="form-group">
+            <a class="btn btn-primary" id="moreIngredients" onclick="moreIngredients()">Add Ingredinets</a>
+            <span asp-validation-for="Ingredients" class="text-danger"></span>
+        </div>
     </div>
-    <br />
     <div id="AttachIngredients"></div>
+    <div class="form-group">
+        <span asp-validation-for="Ingredients" class="text-danger"></span>
+    </div>
     <br />
     <br />
     <input type="submit" class="btn btn-primary" />
@@ -62,11 +75,11 @@
         let ingredient = document.createElement('input')
         ingredient.setAttribute('class', 'form-control');
         ingredient.setAttribute('type', 'text');
-        ingredient.setAttribute('name', `Ingredients[${ingredientsIndex}].Name`);
+        ingredient.setAttribute('name', `Ingredients[${ingredientsIndex}].IngredientName`);
         ingredient.setAttribute('placeholder', `${count}. Ingredient name`);
-        
+
         ingredientDiv.appendChild(ingredient);
-        
+
         let quantityDiv = document.createElement('div');
         quantityDiv.setAttribute('class', 'col');
 
@@ -75,9 +88,9 @@
         quantity.setAttribute('type', 'text');
         quantity.setAttribute('name', `Ingredients[${ingredientsIndex}].Quantity`);
         quantity.setAttribute('placeholder', `${count}. Ingredient Quantity`);
-        
+
         quantityDiv.appendChild(quantity);
-        
+
         formDiv.appendChild(ingredientDiv);
         formDiv.appendChild(quantityDiv);
 
