@@ -1,6 +1,7 @@
 ﻿namespace MamcheAmAm.Data.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     using MamcheAmAm.Data.Common.Models;
 
@@ -11,6 +12,7 @@
             this.Recepies = new HashSet<Recipe>();
         }
 
+        [Required]
         public string Name { get; set; }
 
         public ICollection<Recipe> Recepies { get; set; }

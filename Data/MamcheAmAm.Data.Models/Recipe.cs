@@ -2,8 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     using MamcheAmAm.Data.Common.Models;
+
+    using static MamcheAmAm.Data.Common.DataConstants;
 
     public class Recipe : BaseDeletableModel<int>
     {
@@ -13,8 +16,11 @@
             this.Images = new HashSet<Image>();
         }
 
+        [Required]
+        [MaxLength(RecipeTitleMaxLength)]
         public string Title { get; set; }
 
+        [Required]
         public string Instructions { get; set; }
 
         public TimeSpan PreparationTime { get; set; }
@@ -23,6 +29,7 @@
 
         public int Portions { get; set; }
 
+        [Required]
         public string CreatedByUserId { get; set; }
 
         public virtual ApplicationUser CreatedByUser { get; set; }

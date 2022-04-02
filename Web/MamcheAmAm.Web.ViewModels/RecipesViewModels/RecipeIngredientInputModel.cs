@@ -2,14 +2,16 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using static MamcheAmAm.Data.Common.DataConstants;
+
     public class RecipeIngredientInputModel
     {
         [Required]
-        [MinLength(2)]
+        [MinLength(IngredientsMinName)]
         public string IngredientName { get; set; }
 
         [Required]
-        [MinLength(2)]
+        [MinLength(IngredientsMinQuantity)]
         public string Quantity { get; set; }
     }
 }

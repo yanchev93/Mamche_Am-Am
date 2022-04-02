@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     using MamcheAmAm.Data.Common.Models;
 
@@ -13,10 +14,12 @@
             this.Images = new HashSet<Image>();
         }
 
+        [Required]
         public string Title { get; set; }
 
         public string Description { get; set; }
 
+        [Required]
         public string LinkToYouTube { get; set; }
 
         public int RecipeId { get; set; }

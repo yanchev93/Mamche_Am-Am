@@ -1,5 +1,7 @@
 ﻿namespace MamcheAmAm.Data.Models
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class RecipeIngredient
     {
         public int Id { get; set; }
@@ -12,6 +14,7 @@
 
         public virtual Ingredient Ingredient { get; set; }
 
+        [Required]
         public string Quantity { get; set; }
     }
 }

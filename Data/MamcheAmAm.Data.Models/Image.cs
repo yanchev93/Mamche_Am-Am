@@ -1,6 +1,7 @@
 ﻿namespace MamcheAmAm.Data.Models
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
 
     using MamcheAmAm.Data.Common.Models;
 
@@ -15,8 +16,10 @@
 
         public virtual Recipe Recipe { get; set; }
 
+        [Required]
         public string Extension { get; set; }
 
+        [Required]
         public string CreatedByUserId { get; set; }
 
         public ApplicationUser CreatedByUser { get; set; }
