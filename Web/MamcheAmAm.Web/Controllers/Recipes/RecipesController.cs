@@ -23,7 +23,7 @@
         [HttpPost]
         public IActionResult Create(CreateRecipeInputModel model)
         {
-            if (!this.ModelState.IsValid)
+            if (!this.ModelState.IsValid || model.Ingredients.Count > 40)
             {
                 this.GetCategories();
                 return this.View(model);

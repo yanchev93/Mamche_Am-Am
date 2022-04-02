@@ -28,6 +28,7 @@
         [Display(Name = "Cooking Time (in minutes)")]
         public int CookingTime { get; set; }
 
+        [Required]
         [Range(RecipeMinPortionsCount, RecipeMaxPortionsCount)]
         public int Portions { get; set; }
 
