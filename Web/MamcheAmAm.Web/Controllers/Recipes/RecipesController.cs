@@ -1,17 +1,18 @@
 ﻿namespace MamcheAmAm.Web.Controllers
 {
-    using MamcheAmAm.Data;
+    using MamcheAmAm.Data.Common.Repositories;
+    using MamcheAmAm.Data.Models;
     using MamcheAmAm.Web.ViewModels.RecipesViewModels;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
 
     public class RecipesController : Controller
     {
-        private readonly ApplicationDbContext dbContext;
+        private readonly IDeletableEntityRepository<Category> categoriesRepository;
 
-        public RecipesController(ApplicationDbContext dbContext)
+        public RecipesController(IDeletableEntityRepository<Category> categoriesRepository)
         {
-            this.dbContext = dbContext;
+            this.categoriesRepository = categoriesRepository;
         }
 
         public IActionResult Create()
@@ -32,10 +33,11 @@
             return this.Redirect("/");
         }
 
+        // Couldn't make a service to get the categories and send it to the view
         private void GetCategories()
         {
-            var db = this.dbContext.Categories;
-            this.ViewBag.Category = new SelectList(db, "Id", "Name");
+            var categories = this.categoriesRepository.All();
+            this.ViewBag.Category = new SelectList(categories, "Id", "Name");
         }
     }
 }
