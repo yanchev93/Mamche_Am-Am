@@ -8,6 +8,8 @@
     using MamcheAmAm.Data.Models;
     using MamcheAmAm.Data.Repositories;
     using MamcheAmAm.Data.Seeding;
+    using MamcheAmAm.Services.Data;
+    using MamcheAmAm.Services.Data.Helpers;
     using MamcheAmAm.Services.Mapping;
     using MamcheAmAm.Services.Messaging;
     using MamcheAmAm.Web.ViewModels;
@@ -63,6 +65,8 @@
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
+            services.AddTransient<IRecipesService, RecipesService>();
+            services.AddTransient<IFirstLetterUppercaseHelperService, FirstLetterUppercaseHelperService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
