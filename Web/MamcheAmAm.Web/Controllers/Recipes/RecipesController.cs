@@ -1,6 +1,5 @@
 ﻿namespace MamcheAmAm.Web.Controllers
 {
-    using System.Linq;
     using System.Threading.Tasks;
 
     using MamcheAmAm.Data.Common.Repositories;

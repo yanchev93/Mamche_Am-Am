@@ -7,6 +7,7 @@
 
     public class Category : BaseDeletableModel<int>
     {
+        // TODO Make subcategories for Breakfast, Lunch, Dinner
         public Category()
         {
             this.Recepies = new HashSet<Recipe>();

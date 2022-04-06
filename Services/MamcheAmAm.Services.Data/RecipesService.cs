@@ -63,6 +63,7 @@
                 });
 
                 await this.recipesRepository.AddAsync(recipe);
+                await this.recipesRepository.SaveChangesAsync();
             }
         }
 
