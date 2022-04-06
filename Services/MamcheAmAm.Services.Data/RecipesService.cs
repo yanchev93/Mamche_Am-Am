@@ -26,7 +26,7 @@
             this.firstLetterHelper = firstLetterHelper;
         }
 
-        public async Task CreateAsync(CreateRecipeInputModel model)
+        public async Task CreateAsync(CreateRecipeInputModel model, string userId)
         {
             var recipeTitle = this.firstLetterHelper.FirstLetterToUpperCase(model.Title);
 
@@ -38,6 +38,7 @@
                 PreparationTime = TimeSpan.FromMinutes(model.PreparationTime),
                 CookingTime = TimeSpan.FromMinutes(model.CookingTime),
                 Portions = model.Portions,
+                CreatedByUserId = userId,
             };
 
             foreach (var currentIngredient in model.Ingredients)
@@ -61,10 +62,10 @@
                     Ingredient = ingredient,
                     Quantity = currentIngredient.Quantity,
                 });
-
-                await this.recipesRepository.AddAsync(recipe);
-                await this.recipesRepository.SaveChangesAsync();
             }
+
+            await this.recipesRepository.AddAsync(recipe);
+            await this.recipesRepository.SaveChangesAsync();
         }
 
         public bool AnyDigitsInIngredientName(CreateRecipeInputModel model)

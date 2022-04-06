@@ -6,7 +6,7 @@
 
     public interface IRecipesService
     {
-        Task CreateAsync(CreateRecipeInputModel model);
+        Task CreateAsync(CreateRecipeInputModel model, string userId);
 
         bool AnyDigitsInIngredientName(CreateRecipeInputModel model);
     }
