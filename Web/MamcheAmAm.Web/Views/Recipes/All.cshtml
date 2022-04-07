@@ -1,3 +1,43 @@
-﻿@{
-    this.ViewData["Title"] = "All available recipes";
+﻿@model MamcheAmAm.Web.ViewModels.RecipesViewModels.ListRecipesModel
+
+@{
+    this.ViewData["Title"] = "All recipes";
 }
+
+<br />
+<h2 class="text-center">Welcome to Mamche Am-Am.</h2>
+<h3 class="text-center">Hungry? Try our recipes and you will love them.</h3>
+<br />
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var recipe in this.Model.Recipes)
+    {
+        <div class="col">
+            <div class="card">
+                <img src="@recipe.ImageUrl" class="card-img-top img-fluid" alt="Recipe Image">
+                <div class="card-body">
+                    <h5 class="card-title text-center">@recipe.Title</h5>
+                    <h6 class="card-title text-center">@recipe.CategoryName</h6>
+                    <p class="card-text">@recipe.Instruction.Substring(0, 30)</p>
+                    <a href="#" class="btn btn-primary">Link to recipe</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<nav aria-label="...">
+    <ul class="pagination justify-content-center">
+        <li class="page-item disabled">
+            <a class="page-link">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item active" aria-current="page">
+            <a class="page-link" href="#">2</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+        </li>
+    </ul>
+</nav>

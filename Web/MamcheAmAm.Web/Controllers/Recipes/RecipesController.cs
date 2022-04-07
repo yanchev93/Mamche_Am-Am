@@ -28,7 +28,7 @@
             this.userManager = userManager;
         }
 
-        public IActionResult All()
+        public IActionResult All(int id)
         {
             return this.View();
         }
