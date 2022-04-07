@@ -19,6 +19,8 @@
         [Required]
         public string Extension { get; set; }
 
+        public string RemoteImageUrl { get; set; }
+
         [Required]
         public string CreatedByUserId { get; set; }
 

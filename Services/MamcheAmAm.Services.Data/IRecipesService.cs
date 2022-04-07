@@ -1,5 +1,6 @@
 ﻿namespace MamcheAmAm.Services.Data
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using MamcheAmAm.Web.ViewModels.RecipesViewModels;
@@ -7,6 +8,8 @@
     public interface IRecipesService
     {
         Task CreateAsync(CreateRecipeInputModel model, string userId);
+
+        IEnumerable<SingleRecipeModel> GetAllRecipes(int page, int itemsPerPage = 10);
 
         bool AnyDigitsInIngredientName(CreateRecipeInputModel model);
     }

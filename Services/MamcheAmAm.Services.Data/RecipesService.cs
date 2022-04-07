@@ -1,6 +1,7 @@
 ﻿namespace MamcheAmAm.Services.Data
 {
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
@@ -8,6 +9,7 @@
     using MamcheAmAm.Data.Common.Repositories;
     using MamcheAmAm.Data.Models;
     using MamcheAmAm.Services.Data.Helpers;
+    using MamcheAmAm.Services.Mapping;
     using MamcheAmAm.Web.ViewModels.RecipesViewModels;
 
     public class RecipesService : IRecipesService
@@ -66,6 +68,18 @@
 
             await this.recipesRepository.AddAsync(recipe);
             await this.recipesRepository.SaveChangesAsync();
+        }
+
+        public IEnumerable<SingleRecipeModel> GetAllRecipes(int page, int itemsPerPage = 10)
+        {
+            var allRecipes = this.recipesRepository.AllAsNoTracking()
+            .OrderByDescending(x => x.Id)
+            .Skip((page - 1) * itemsPerPage)
+            .Take(itemsPerPage)
+            .To<SingleRecipeModel>()
+            .ToList();
+
+            return allRecipes;
         }
 
         public bool AnyDigitsInIngredientName(CreateRecipeInputModel model)

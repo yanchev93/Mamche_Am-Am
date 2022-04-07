@@ -30,7 +30,13 @@
 
         public IActionResult All(int id)
         {
-            return this.View();
+            var viewModel = new ListRecipesModel
+            {
+                Recipes = this.recipesService.GetAllRecipes(id, 10),
+                PageNumber = id,
+            };
+
+            return this.View(viewModel);
         }
 
         [Authorize]
