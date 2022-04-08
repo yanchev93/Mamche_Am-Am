@@ -28,12 +28,16 @@
             this.userManager = userManager;
         }
 
-        public IActionResult All(int id)
+        public IActionResult All(int id = 1)
         {
+            const int itemsPerPage = 10;
+
             var viewModel = new ListRecipesModel
             {
-                Recipes = this.recipesService.GetAllRecipes(id, 10),
+                Recipes = this.recipesService.GetAllRecipes<SingleRecipeModel>(id, itemsPerPage),
                 PageNumber = id,
+                RecipesCount = this.recipesService.GetCountRecipes(),
+                ItemsPerPage = itemsPerPage,
             };
 
             return this.View(viewModel);

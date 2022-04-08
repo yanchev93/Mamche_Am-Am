@@ -9,7 +9,9 @@
     {
         Task CreateAsync(CreateRecipeInputModel model, string userId);
 
-        IEnumerable<SingleRecipeModel> GetAllRecipes(int page, int itemsPerPage = 10);
+        IEnumerable<T> GetAllRecipes<T>(int page, int itemsPerPage = 10);
+
+        int GetCountRecipes();
 
         bool AnyDigitsInIngredientName(CreateRecipeInputModel model);
     }

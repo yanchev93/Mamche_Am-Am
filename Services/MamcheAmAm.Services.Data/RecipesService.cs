@@ -70,16 +70,21 @@
             await this.recipesRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<SingleRecipeModel> GetAllRecipes(int page, int itemsPerPage = 10)
+        public IEnumerable<T> GetAllRecipes<T>(int page, int itemsPerPage = 10)
         {
             var allRecipes = this.recipesRepository.AllAsNoTracking()
             .OrderByDescending(x => x.Id)
             .Skip((page - 1) * itemsPerPage)
             .Take(itemsPerPage)
-            .To<SingleRecipeModel>()
+            .To<T>()
             .ToList();
 
             return allRecipes;
+        }
+
+        public int GetCountRecipes()
+        {
+            return this.recipesRepository.All().Count();
         }
 
         public bool AnyDigitsInIngredientName(CreateRecipeInputModel model)

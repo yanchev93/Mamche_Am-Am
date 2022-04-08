@@ -12,7 +12,7 @@
 
         public string Title { get; set; }
 
-        public string Instruction { get; set; }
+        public string Instructions { get; set; }
 
         public string ImageUrl { get; set; }
 
@@ -23,7 +23,7 @@
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Recipe, SingleRecipeModel>()
-                .ForMember(x => x.ImageUrl, opt => opt.MapFrom(r => 
+                .ForMember(x => x.ImageUrl, opt => opt.MapFrom(r =>
                                  r.Images.FirstOrDefault().RemoteImageUrl != null
                                ? r.Images.FirstOrDefault().RemoteImageUrl.ToString()
                                : "/images/recipes/" + r.Images.FirstOrDefault().Id + "." + r.Images.FirstOrDefault().Extension));
