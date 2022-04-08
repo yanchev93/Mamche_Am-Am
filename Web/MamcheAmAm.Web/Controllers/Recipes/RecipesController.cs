@@ -1,5 +1,6 @@
 ﻿namespace MamcheAmAm.Web.Controllers
 {
+    using System;
     using System.Threading.Tasks;
 
     using MamcheAmAm.Data.Common.Repositories;
@@ -30,7 +31,13 @@
 
         public IActionResult All(int id = 1)
         {
-            const int itemsPerPage = 10;
+            const int itemsPerPage = 9;
+            int pagesCount = (int)Math.Ceiling((double)this.recipesService.GetCountRecipes() / itemsPerPage);
+
+            if (id <= 0 || id > pagesCount)
+            {
+                id = 1;
+            }
 
             var viewModel = new ListRecipesModel
             {

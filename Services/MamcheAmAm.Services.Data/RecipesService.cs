@@ -70,7 +70,7 @@
             await this.recipesRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAllRecipes<T>(int page, int itemsPerPage = 10)
+        public IEnumerable<T> GetAllRecipes<T>(int page, int itemsPerPage = 9)
         {
             var allRecipes = this.recipesRepository.AllAsNoTracking()
             .OrderByDescending(x => x.Id)
