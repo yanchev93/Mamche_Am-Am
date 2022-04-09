@@ -3,6 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using MamcheAmAm.Web.ViewModels.ValidationAttributes;
+    using Microsoft.AspNetCore.Http;
 
     using static MamcheAmAm.Data.Common.DataConstants;
 
@@ -17,6 +19,11 @@
         [Required(ErrorMessage = "Please provide proper instructions for the recipe. It should have more than 30 characters.")]
         [MinLength(RecipeInstructionMinLength)]
         public string Instructions { get; set; }
+
+        [Required]
+        [MaxFileSize(10 * 1024 * 1024)]
+        [AllowedExtensions(new string[] { ".jpeg", ".png", ".jpg" })]
+        public IFormFile Image { get; set; }
 
         [Required]
         [Range(RecipeMinRangeTime, RecipeMaxRangeTime)]
