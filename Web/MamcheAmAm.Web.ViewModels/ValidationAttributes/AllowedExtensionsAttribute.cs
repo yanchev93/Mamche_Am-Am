@@ -19,7 +19,7 @@
 
         public string GetErrorMessage(string name)
         {
-            return $"{name} extension is not allowed!";
+            return $"{name} extension is not allowed! Allowed extensions are - {string.Join(" / ", this.extensions)}";
         }
 
         protected override ValidationResult IsValid(

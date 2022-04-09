@@ -11,6 +11,6 @@
         public const int RecipeMaxPortionsCount = 80;
 
         public const int IngredientsMinName = 2;
-        public const int IngredientsMinQuantity = 2;
+        public const int IngredientsMinQuantity = 1;
     }
 }

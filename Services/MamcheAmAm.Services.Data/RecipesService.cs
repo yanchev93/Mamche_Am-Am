@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Globalization;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -64,6 +65,21 @@
                     Ingredient = ingredient,
                     Quantity = currentIngredient.Quantity,
                 });
+            }
+
+            foreach (var imageFile in model.Images)
+            {
+                var currentImageExtension = Path.GetExtension(imageFile.FileName);
+
+                var currentImage = new Image
+                {
+                    Extension = currentImageExtension,
+                    CreatedByUserId = userId,
+                };
+
+                recipe.Images.Add(currentImage);
+
+
             }
 
             await this.recipesRepository.AddAsync(recipe);

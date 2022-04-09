@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
     using MamcheAmAm.Web.ViewModels.ValidationAttributes;
     using Microsoft.AspNetCore.Http;
 
@@ -22,8 +23,8 @@
 
         [Required]
         [MaxFileSize(10 * 1024 * 1024)]
-        [AllowedExtensions(new string[] { ".jpeg", ".png", ".jpg" })]
-        public IFormFile Image { get; set; }
+        [AllowedExtensions(new string[] { ".png", ".jpeg", ".jpg" })]
+        public List<IFormFile> Images { get; set; }
 
         [Required]
         [Range(RecipeMinRangeTime, RecipeMaxRangeTime)]
