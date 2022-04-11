@@ -9,6 +9,7 @@
     using MamcheAmAm.Web.ViewModels.RecipesViewModels;
 
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
@@ -17,15 +18,18 @@
     {
         private readonly IDeletableEntityRepository<Category> categoriesRepository;
         private readonly IRecipesService recipesService;
+        private readonly IWebHostEnvironment environment;
         private readonly UserManager<ApplicationUser> userManager;
 
         public RecipesController(
             IDeletableEntityRepository<Category> categoriesRepository,
             IRecipesService recipesService,
+            IWebHostEnvironment environment,
             UserManager<ApplicationUser> userManager)
         {
             this.categoriesRepository = categoriesRepository;
             this.recipesService = recipesService;
+            this.environment = environment;
             this.userManager = userManager;
         }
 
@@ -68,7 +72,7 @@
             }
 
             var user = await this.userManager.GetUserAsync(this.User);
-            await this.recipesService.CreateAsync(model, user.Id);
+            await this.recipesService.CreateAsync(model, user.Id, $"{this.environment.WebRootPath}/images");
 
             return this.Redirect("/");
         }

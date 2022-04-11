@@ -29,7 +29,7 @@
             this.firstLetterHelper = firstLetterHelper;
         }
 
-        public async Task CreateAsync(CreateRecipeInputModel model, string userId)
+        public async Task CreateAsync(CreateRecipeInputModel model, string userId, string imagePath)
         {
             var recipeTitle = this.firstLetterHelper.FirstLetterToUpperCase(model.Title);
 
@@ -67,9 +67,15 @@
                 });
             }
 
+            if (!Directory.Exists($"{imagePath}/recipes/"))
+            {
+                Directory.CreateDirectory($"{imagePath}/recipes/");
+            }
+
             foreach (var imageFile in model.Images)
             {
-                var currentImageExtension = Path.GetExtension(imageFile.FileName);
+                // Generating the extension. It will be generated with a dot('.').
+                var currentImageExtension = Path.GetExtension(imageFile.FileName).TrimStart('.');
 
                 var currentImage = new Image
                 {
@@ -79,7 +85,12 @@
 
                 recipe.Images.Add(currentImage);
 
+                // Generating physicalPath for the image where is it going to be saved.
+                var physicalPath = $"{imagePath}/recipes/{currentImage}.{currentImageExtension}";
 
+                // Reading bytes and coping to directory. -> 1 line code: await imageFile.CopyToAsync(new FileStream(physicalPath, FileMode.Create));
+                using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
+                await imageFile.CopyToAsync(fileStream);
             }
 
             await this.recipesRepository.AddAsync(recipe);
