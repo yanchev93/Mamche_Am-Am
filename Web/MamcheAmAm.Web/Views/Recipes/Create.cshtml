@@ -26,17 +26,17 @@
         <span asp-validation-for="CategoryId" class="text-danger"></span>
     </div>
     <br />
-    <div class="form-group">
+    @*<div class="form-group">
         <label asp-for="Images" class="control-label"></label>
         <div class="custom-file">
             <input asp-for="Images" class="custom-file-input" id="imgFiles" />
             <label class="custom-file-label" for="imgFiles">Select up to 5 photos</label>
         </div>
         <span asp-validation-for="Images" class="text-danger"></span>
-    </div>
+    </div>*@
     <div>
         <label asp-for="Images">Select up to 5 photos: </label>
-        <input asp-for="Images" class="custom-file" />
+        <input asp-for="Images"/>
         <span asp-validation-for="Images" class="text-danger"></span>
     </div>
     <br />

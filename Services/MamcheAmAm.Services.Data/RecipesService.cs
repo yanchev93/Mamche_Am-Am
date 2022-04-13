@@ -31,6 +31,7 @@
 
         public async Task CreateAsync(CreateRecipeInputModel model, string userId, string imagePath)
         {
+            // TODO: Validate equal Title recipe from the same user.
             var recipeTitle = this.firstLetterHelper.FirstLetterToUpperCase(model.Title);
 
             var recipe = new Recipe
@@ -67,26 +68,22 @@
                 });
             }
 
-            if (!Directory.Exists($"{imagePath}/recipes/"))
-            {
-                Directory.CreateDirectory($"{imagePath}/recipes/");
-            }
-
+            Directory.CreateDirectory($"{imagePath}/recipes/");
             foreach (var imageFile in model.Images)
             {
                 // Generating the extension. It will be generated with a dot('.').
-                var currentImageExtension = Path.GetExtension(imageFile.FileName).TrimStart('.');
+                var extension = Path.GetExtension(imageFile.FileName).TrimStart('.');
 
                 var currentImage = new Image
                 {
-                    Extension = currentImageExtension,
+                    Extension = extension,
                     CreatedByUserId = userId,
                 };
 
                 recipe.Images.Add(currentImage);
 
                 // Generating physicalPath for the image where is it going to be saved.
-                var physicalPath = $"{imagePath}/recipes/{currentImage}.{currentImageExtension}";
+                var physicalPath = $"{imagePath}/recipes/{currentImage.Id}.{extension}";
 
                 // Reading bytes and coping to directory. -> 1 line code: await imageFile.CopyToAsync(new FileStream(physicalPath, FileMode.Create));
                 using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
