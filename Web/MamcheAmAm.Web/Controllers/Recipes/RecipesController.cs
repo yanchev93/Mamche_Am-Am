@@ -77,6 +77,11 @@
             return this.Redirect("/");
         }
 
+        public IActionResult ById()
+        {
+            return this.View();
+        }
+
         // Couldn't make a service to get the categories and send it to the view
         private void GetCategories()
         {
