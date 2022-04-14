@@ -11,6 +11,8 @@
 
         IEnumerable<T> GetAllRecipes<T>(int page, int itemsPerPage = 10);
 
+        T GetById<T>(int id);
+
         int GetCountRecipes();
 
         bool AnyDigitsInIngredientName(CreateRecipeInputModel model);

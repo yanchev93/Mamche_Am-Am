@@ -106,6 +106,16 @@
             return allRecipes;
         }
 
+        public T GetById<T>(int id)
+        {
+            var recipeDetails = this.recipesRepository.All()
+                .Where(x => x.Id == id)
+                .To<T>()
+                .FirstOrDefault();
+
+            return recipeDetails;
+        }
+
         public int GetCountRecipes()
         {
             return this.recipesRepository.All().Count();

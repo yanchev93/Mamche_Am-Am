@@ -77,9 +77,10 @@
             return this.Redirect("/");
         }
 
-        public IActionResult ById()
+        public IActionResult ById(int id)
         {
-            return this.View();
+            var recipeById = this.recipesService.GetById<RecipeDetailsModel>(id);
+            return this.View(recipeById);
         }
 
         // Couldn't make a service to get the categories and send it to the view
