@@ -4,60 +4,113 @@
     this.ViewData["Title"] = @Model.Title;
 }
 
-<div class="recepie_details_area">
+<div>
     <div class="container">
         <div class="row align-items-center">
             <div class="col-xl-6 col-md-6">
                 <div class="recepies_thumb">
-                    <img src="@Model.ImageUrl" alt="Recipe Image">
+                    <img src="@Model.ImageUrl" alt="Recipe Image" class="img-fluid">
                 </div>
             </div>
             <div class="col-xl-6 col-md-6">
                 <div class="recepies_info">
                     <h2 id="recipeTitle">@this.ViewData["Title"]</h2>
                     @*Created by: , Created on:*@
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-
+                    <hr />
                     <div class="resepies_details">
                         <ul style="list-style-type:none; padding-inline-start: 0px">
-                            <li><p><strong><i class="bi bi-star-half"></i> Rating</strong> : </p></li>
+                            <li><p><strong><i class="bi bi-star-fill"></i> Rating</strong> : </p></li>
                             <li><p><strong><i class="bi bi-bookmark-heart"></i> Category</strong> : @Model.CategoryName </p></li>
-                            <li><p><strong><i class="bi bi-hourglass-split"></i> Preparation time</strong> : @Model.PreparationTime </p></li>
-                            <li><p><strong><i class="bi bi-clock"></i> Cooking time</strong> : @Model.CookingTime </p></li>
-                            <li><p><strong><i class="bi bi-basket3"></i> Portions</strong> : @Model.Portions </p></li>
+                            <li>
+                                <p>
+                                    <strong><i class="bi bi-hourglass-split"></i> Preparation time</strong> :
+                                    @Model.PreparationTime.Minutes
+                                    @if (@Model.PreparationTime.Minutes == 1)
+                                    {
+                                        <span>minute</span>
+                                    }
+                                    else
+                                    {
+                                        <span>minutes</span>
+                                    }
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <strong><i class="bi bi-clock"></i> Cooking time</strong> :
+                                    @Model.CookingTime.Minutes
+                                    @if (@Model.CookingTime.Minutes == 1)
+                                    {
+                                        <span>minute</span>
+                                    }
+                                    else
+                                    {
+                                        <span>minutes</span>
+                                    }
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <strong><i class="bi bi-people"></i> Serving</strong> :
+                                    @Model.Portions
+                                    @if (@Model.Portions == 1)
+                                    {
+                                        <span>person</span>
+                                    }
+                                    else
+                                    {
+                                        <span>people</span>
+                                    }
+                                </p>
+                            </li>
                         </ul>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-6">
+                        <strong><i class="bi bi-person-fill"></i> Created by</strong> : <br /> @Model.CreatedByUserUserName
+                    </div>
+                    <div class="col-6">
+                        <strong><i class="bi bi-calendar3"></i> Created on </strong> : <br /> @Model.CreatedOn.ToShortDateString()
                     </div>
                 </div>
             </div>
         </div>
+        <hr />
         <div class="links">
             <div class="container text-center">
                 <div class="row">
                     <div class="col-4" id="fbLink">
-                        <a href="https://www.facebook.com/MamcheAmAm" target="_blank" rel="noopener noreferrer" style="font-size:40px;"> <i class="bi bi-facebook"></i> </a>
+                        <a href="https://www.facebook.com/MamcheAmAm" target="_blank" rel="noopener noreferrer" title="Facebook Page - MamcheAmAm" style="font-size:40px;"> <i class="bi bi-facebook"></i> </a>
                     </div>
                     <div class="col-4" id="instagramLink">
-                        <a href="https://www.instagram.com/mamcheamam/" target="_blank" rel="noopener noreferrer" style="font-size:40px; color:#e32e7f"> <i class="bi bi-instagram"></i> </a>
+                        <a href="https://www.instagram.com/mamcheamam/" target="_blank" rel="noopener noreferrer" title="Instagram Profile - MamcheAmAm" style="font-size:40px; color:#e32e7f"> <i class="bi bi-instagram"></i> </a>
                     </div>
                     <div class="col-4" id="youtubeLink">
-                        <a href="https://bit.ly/3EtQWvZ" target="_blank" rel="noopener noreferrer" style="font-size:40px; color:red"> <i class="bi bi-youtube"></i> </a>
+                        <a href="https://bit.ly/3EtQWvZ" target="_blank" rel="noopener noreferrer" title="Youtube Channel - MamcheAmAm" style="font-size:40px; color:red"> <i class="bi bi-youtube"></i> </a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="recepies_text" id="recipeInstructions">
-                    <ul>
-                        @foreach (var ingredient in @Model.Ingredients)
-                        {
-                            <li>@ingredient.IngredientName - @ingredient.Quantity</li>
-                        }
-                    </ul>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.</p>
-                    <p> Voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit. Voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-                </div>
+        <br />
+        <div class="row border">
+            <div class="col-4 border-right" id="recipeIngredients">
+                <div class="text-md-center font-weight-bold"><i class="bi bi-basket"></i> <strong>Ingredients</strong> :</div>
+                <hr />
+                <ul>
+                    @foreach (var ingredient in @Model.Ingredients)
+                    {
+                        <li><strong>@ingredient.IngredientName</strong> - @ingredient.Quantity</li>
+                    }
+                </ul>
+            </div>
+            <div class="col-8" id="recipeInstructions">
+                <div class="text-md-center font-weight-bold"><i class="bi bi-clipboard-check"></i> <strong>How to</strong> :</div>
+                <hr />
+                <p>
+                    @Model.Instructions
+                </p>
             </div>
         </div>
     </div>
