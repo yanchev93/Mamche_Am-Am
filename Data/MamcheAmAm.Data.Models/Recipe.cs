@@ -14,6 +14,7 @@
         {
             this.Ingredients = new HashSet<RecipeIngredient>();
             this.Images = new HashSet<Image>();
+            this.Ratings = new HashSet<Rating>();
         }
 
         [Required]
@@ -41,5 +42,7 @@
         public virtual Category Category { get; set; }
 
         public virtual ICollection<Image> Images { get; set; }
+
+        public virtual ICollection<Rating> Ratings { get; set; }
     }
 }
