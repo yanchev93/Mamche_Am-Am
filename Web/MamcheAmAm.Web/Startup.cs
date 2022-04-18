@@ -67,6 +67,7 @@
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<IRecipesService, RecipesService>();
             services.AddTransient<IFirstLetterUppercaseHelperService, FirstLetterUppercaseHelperService>();
+            services.AddTransient<IRatingService, RatingService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
