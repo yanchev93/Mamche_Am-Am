@@ -4,11 +4,6 @@
 
     public class Rating : BaseModel<int>
     {
-        public Rating()
-        {
-
-        }
-
         public int RecipeId { get; set; }
 
         public virtual Recipe Recipe { get; set; }

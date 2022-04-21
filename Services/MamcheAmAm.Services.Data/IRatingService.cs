@@ -5,5 +5,7 @@
     public interface IRatingService
     {
         Task SetRatingAsync(int recipeId, string userId, byte value);
+
+        double GetAverageRating(int recipeId);
     }
 }
