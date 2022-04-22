@@ -15,11 +15,21 @@
             <div class="col-xl-6 col-md-6">
                 <div class="recepies_info">
                     <h2 id="recipeTitle">@this.ViewData["Title"]</h2>
-                    @*Created by: , Created on:*@
                     <hr />
                     <div class="resepies_details">
                         <ul style="list-style-type:none; padding-inline-start: 0px">
-                            <li><p><strong><i class="bi bi-star-fill"></i> Rating</strong> : </p></li>
+                            <li>
+                                <p>
+                                    <ul class="list-unstyled list-inline" id="rating">
+                                        <li class="list-inline-item"><strong><i class="bi bi-star-fill"></i> Rating</strong> :</li>
+                                        <li class="list-inline-item" data-rate="1"><i class="bi bi-star"></i></li>
+                                        <li class="list-inline-item" data-rate="2"><i class="bi bi-star"></i></li>
+                                        <li class="list-inline-item" data-rate="3"><i class="bi bi-star"></i></li>
+                                        <li class="list-inline-item" data-rate="4"><i class="bi bi-star"></i></li>
+                                        <li class="list-inline-item" data-rate="5"><i class="bi bi-star"></i></li>
+                                    </ul>
+                                </p>
+                            </li>
                             <li><p><strong><i class="bi bi-bookmark-heart"></i> Category</strong> : @Model.CategoryName </p></li>
                             <li>
                                 <p>
@@ -115,3 +125,34 @@
         </div>
     </div>
 </div>
+
+@section Scripts{
+<script type="text/javascript">
+    //const allStars = document.querySelector('#rating');
+
+    //allStars.forEach(function(el){
+    //    console.log(el);
+    //})
+
+    //$("li[data-rate]").each(function (star){
+    //    console.log(star + 1);
+    //});
+
+    // console.log(allStars);
+
+  // function mouseOver(i){
+  //     let currentStarLevel = i + 1;
+  //     allStars.forEach((star, j) => {
+  //         console.log(star);
+  //         //if(currentStarLevel >= j + 1){
+  //         //    star.classList.remove('bi-star')
+  //         //}
+  //     })
+  // };
+  // 
+  // allStars.forEach((star, i) => {
+  //     star.mouseOver(i);
+  // });
+
+</script>
+}

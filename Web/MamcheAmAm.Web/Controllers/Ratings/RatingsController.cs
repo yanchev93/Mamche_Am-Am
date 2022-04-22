@@ -10,7 +10,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     [ApiController]
-    [Route("api/[cotroller]")]
+    [Route("api/[controller]")]
     public class RatingsController : BaseController
     {
         private readonly IRatingService ratingService;
