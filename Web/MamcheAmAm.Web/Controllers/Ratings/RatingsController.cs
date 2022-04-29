@@ -26,6 +26,7 @@
 
         [HttpPost]
         [Authorize]
+        [IgnoreAntiforgeryToken]
         public async Task<ActionResult<PostRatingResponseModel>> Post(PostRatingInputModel model)
         {
             var user = await this.userManager.GetUserAsync(this.User);

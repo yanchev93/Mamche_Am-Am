@@ -5,6 +5,7 @@
 }
 
 <div>
+
     <div class="container">
         <div class="row align-items-center">
             <div class="col-xl-6 col-md-6">
@@ -27,6 +28,7 @@
                                         <li class="list-inline-item" id="ratingStar" data-rate="3"><i class="bi bi-star"></i></li>
                                         <li class="list-inline-item" id="ratingStar" data-rate="4"><i class="bi bi-star"></i></li>
                                         <li class="list-inline-item" id="ratingStar" data-rate="5"><i class="bi bi-star"></i></li>
+                                        <li class="list-inline-item"><span>- avrgRating<span> / 5</span></span></li>
                                     </ul>
                                 </p>
                             </li>
@@ -127,32 +129,33 @@
 </div>
 
 @section Scripts{
-<script type="text/javascript">
-    //const allStars = document.querySelector('#rating');
+<script>
+    let currentRecipeId = @Model.Id;
+    const allStars = document.querySelectorAll('li[data-rate]');
 
-    //allStars.forEach(function(el){
-    //    console.log(el);
-    //})
+    allStars.forEach((star) => {
+        star.onclick = function () {
+            let currentStarLevel = star.getAttribute('data-rate');
+            let data = { recipeId: currentRecipeId, value: currentStarLevel };
 
-    //$("li[data-rate]").each(function (star){
-    //    console.log(star + 1);
-    //});
+            allStars.forEach((star, i) => {
+                if (currentStarLevel >= i + 1) {
+                    star.firstChild.className = "bi bi-star-fill";
+                } else {
+                    star.firstChild.className = "bi bi-star";
+                }
+            });
 
-    // console.log(allStars);
-
-  // function mouseOver(i){
-  //     let currentStarLevel = i + 1;
-  //     allStars.forEach((star, j) => {
-  //         console.log(star);
-  //         //if(currentStarLevel >= j + 1){
-  //         //    star.classList.remove('bi-star')
-  //         //}
-  //     })
-  // };
-  // 
-  // allStars.forEach((star, i) => {
-  //     star.mouseOver(i);
-  // });
-
+            $.ajax({
+               type: "POST",
+               url: "/api/Ratings",
+               data: JSON.stringify(data),
+               success: function (data) {
+                  console.log(data);
+               },
+               contentType: "application/json"
+            });
+        }
+    });
 </script>
 }
